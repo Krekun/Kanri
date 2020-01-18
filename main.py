@@ -2,6 +2,7 @@
 import cv2
 from pyzbar.pyzbar import decode
 from Get_title import *
+import pyperclip
 
 # VideoCaptureのインスタンスを作成する。
 # 引数でカメラを選べれる。
@@ -30,11 +31,13 @@ while i<100:
         data = decode(edframe)
         num=data[0][0].decode('utf-8', 'ignore')
         if '978' in num:
-            print(num)
+            print('OK')
             title=Get_title(num)
             print(title)
+            pyperclip.copy(title)
             break
         else:
+            print('バーコードが変?')
             pass
     except:
         pass
